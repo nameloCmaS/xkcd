@@ -18,6 +18,7 @@
 #define kAttributeLoading @"loading"
 #define kAttributeName @"name"
 #define kAttributeTitleText @"titleText"
+#define kAttributeExplanation @"explanation"
 
 #pragma mark -
 
@@ -43,6 +44,7 @@ static NSMutableSet *downloadedImages = nil;
 @dynamic imageURL;
 @dynamic number;
 @dynamic loading;
+@dynamic explanation;
 
 + (void)initialize {
 	if ([self class] == [Comic class]) {
@@ -53,6 +55,20 @@ static NSMutableSet *downloadedImages = nil;
 }
 
 + (void)synchronizeDownloadedImages {
+<<<<<<< HEAD
+  NSFileManager *fileManager = [NSFileManager defaultManager];
+  NSError *error = nil;
+  TLDebugLog(@"Starting synchronization of downloaded images");
+  NSArray *allDocuments = [fileManager contentsOfDirectoryAtPath:AppDelegate.applicationDocumentsDirectory error:&error];
+  if(!error) {
+    NSArray *imageDataPaths = [allDocuments objectsPassingTest:^BOOL (id obj) {
+      NSString *path = (NSString *)obj;
+      return [path hasSuffix:@".imagedata"];
+    }];
+    downloadedImages = [NSMutableSet setWithArray:imageDataPaths];
+    TLDebugLog(@"Synchronized downloaded images: %lu images", (unsigned long)downloadedImages.count);
+  }
+=======
 	NSFileManager *fileManager = [NSFileManager defaultManager];
 	NSError *error = nil;
 	TLDebugLog(@"Starting synchronization of downloaded images");
@@ -65,6 +81,7 @@ static NSMutableSet *downloadedImages = nil;
 		downloadedImages = [NSMutableSet setWithArray:imageDataPaths];
 		TLDebugLog(@"Synchronized downloaded images: %lu images", downloadedImages.count);
 	}
+>>>>>>> master
 }
 
 + (Comic *)comic {

@@ -164,12 +164,24 @@ static NSString *applicationDocumentsDirectory = nil;
  If the model doesn't already exist, it is created by merging all of the models found in the application bundle.
  */
 - (NSManagedObjectModel *)managedObjectModel {
+<<<<<<< HEAD
+  if (_managedObjectModel != nil) {
+    return _managedObjectModel;
+  }
+
+  NSString *path = [[NSBundle mainBundle] pathForResource:@"xkcd" ofType:@"momd"];
+  NSURL *momURL = [NSURL fileURLWithPath:path];
+  _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:momURL];
+    
+  return _managedObjectModel;
+=======
 	
 	if (_managedObjectModel != nil) {
 		return _managedObjectModel;
 	}
 	_managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
 	return _managedObjectModel;
+>>>>>>> master
 }
 
 
@@ -178,6 +190,48 @@ static NSString *applicationDocumentsDirectory = nil;
  If the coordinator doesn't already exist, it is created and the application's store added to it.
  */
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
+<<<<<<< HEAD
+  if (_persistentStoreCoordinator != nil) {
+    return _persistentStoreCoordinator;
+  }
+
+  NSFileManager *fileManager = [NSFileManager defaultManager];
+
+  // Clean up the old file from previous versions
+  NSString *oldStorePath = [self.applicationDocumentsDirectory stringByAppendingPathComponent: @"xkcd.sqlite"];
+  if([fileManager fileExistsAtPath:oldStorePath]) {
+    NSError *removalError = nil;
+    [fileManager removeItemAtPath:oldStorePath error:&removalError];
+    if(removalError) {
+      TLDebugLog(@"Error removing old sqlite file at %@", removalError);
+    }
+  }
+
+  NSString *storePath = [self.applicationDocumentsDirectory stringByAppendingPathComponent: @"comics.sqlite"];
+  TLDebugLog(@"Store path: %@", [storePath stringByReplacingOccurrencesOfString:@" " withString:@"\\ "]);
+  
+  if(![fileManager fileExistsAtPath:storePath]) {
+    NSString *bundledPath = [[NSBundle mainBundle] pathForResource:@"comics" ofType:@"sqlite"];
+    if([fileManager fileExistsAtPath:bundledPath]) {
+      [fileManager copyItemAtPath:bundledPath toPath:storePath error:NULL];
+    }
+  }
+
+  NSURL *storeUrl = [NSURL fileURLWithPath:storePath];
+  NSError *error = nil;
+  _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];
+  NSDictionary *options = @{NSMigratePersistentStoresAutomaticallyOption: @(YES),
+                            NSInferMappingModelAutomaticallyOption: @(YES)};
+  if(![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
+                                                configuration:nil
+                                                          URL:storeUrl
+                                                      options:options
+                                                        error:&error]) {
+      NSLog(@"Error opening store: %@", error);
+  }
+
+  return _persistentStoreCoordinator;
+=======
 	if (_persistentStoreCoordinator != nil) {
 		return _persistentStoreCoordinator;
 	}
@@ -216,6 +270,7 @@ static NSString *applicationDocumentsDirectory = nil;
 	}
 	
 	return _persistentStoreCoordinator;
+>>>>>>> master
 }
 
 #pragma mark -
