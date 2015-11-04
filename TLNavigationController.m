@@ -12,8 +12,8 @@
 
 @implementation TLNavigationController
 
-- (NSUInteger)supportedInterfaceOrientations {
-    return [AppDelegate rotate] ? UIInterfaceOrientationMaskAllButUpsideDown : UIInterfaceOrientationMaskPortrait;
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+	return UIInterfaceOrientationMaskAllButUpsideDown;
 }
 
 @end
