@@ -33,16 +33,6 @@
 + (void)deleteDownloadedImage:(NSString *)downloadedImage; // strings drawn from +downloadedImages
 + (NSString *)imagePathForImageFilename:(NSString *)imageFilename;
 
-<<<<<<< HEAD
-@property(nonatomic, strong, readonly) UIImage *image;
-@property(nonatomic, strong, readwrite) NSNumber *loading;
-@property(nonatomic, strong, readwrite) NSString *imageURL;
-@property(nonatomic, strong, readwrite) NSString *name;
-@property(nonatomic, strong, readwrite) NSString *titleText;
-@property(nonatomic, strong, readwrite) NSString *transcript;
-@property(nonatomic, strong, readwrite) NSNumber *number;
-@property(nonatomic, strong, readwrite) NSString *explanation;
-=======
 @property (nonatomic, readonly) UIImage *image;
 @property (nonatomic) NSNumber *loading;
 @property (nonatomic) NSString *imageURL;
@@ -50,6 +40,7 @@
 @property (nonatomic) NSString *titleText;
 @property (nonatomic) NSString *transcript;
 @property (nonatomic) NSNumber *number;
->>>>>>> master
+@property (nonatomic) NSString *explanation;
+
 
 @end

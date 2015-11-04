@@ -53,18 +53,7 @@
 - (instancetype)initWithComic:(Comic *)comicToView {
   if (self = [super initWithNibName:nil bundle:nil]) {
     _comic = comicToView;
-<<<<<<< HEAD
-    self.comic = comicToView;
-    self.title = [NSString stringWithFormat:@"%i. %@", _comic.number.integerValue, _comic.name];
-    
-    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Comic", @"Back button label for comics")
-                                                                       style:UIBarButtonItemStyleBordered
-                                                                      target:nil
-                                                                      action:nil];
-    [self.navigationItem setBackBarButtonItem:backButtonItem];
-=======
     self.title = [NSString stringWithFormat:@"%li. %@", (long)_comic.number.integerValue, _comic.name];
->>>>>>> master
   }
   return self;
 }
@@ -113,52 +102,6 @@
 }
 
 - (void)setupToolbar {
-<<<<<<< HEAD
-  UIBarButtonItem *systemActionItem = [UIBarButtonItem barButtonSystemItem:UIBarButtonSystemItemAction
-                                                                    target:self
-                                                                    action:@selector(systemAction:)];
-    
-  UIBarButtonItem *explainXkcdItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"explain"]
-                                                                      style:UIBarButtonItemStylePlain
-                                                                     target:self
-                                                                     action:@selector(explainComic)];
-    explainXkcdItem.accessibilityLabel = NSLocalizedString(@"Explain comic", @"explain_comic_accessibility_label");
-  
-  UIBarButtonItem *previousItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"down"]
-                                                                    style:UIBarButtonItemStylePlain
-                                                                   target:self
-                                                                   action:@selector(goToPreviousComic)];
-  previousItem.accessibilityLabel = NSLocalizedString(@"Older comic", @"older_comic_accessibility_label");
-  previousItem.enabled = (self.comic.number.unsignedIntegerValue != kMinComicNumber);
-
-  UIBarButtonItem *randomItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"glyphish_shuffle"]
-                                                                  style:UIBarButtonItemStylePlain
-                                                                 target:self
-                                                                 action:@selector(goToRandomComic)];
-  randomItem.accessibilityLabel = NSLocalizedString(@"Random comic", @"random_comic_accessibility_label");
-
-  UIBarButtonItem *nextItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"up"]
-                                                                style:UIBarButtonItemStylePlain
-                                                               target:self
-                                                               action:@selector(goToNextComic)];
-  nextItem.accessibilityLabel = NSLocalizedString(@"Newer comic", @"newer_comic_accessibility_label");
-  nextItem.enabled = (self.comic.number.unsignedIntegerValue != [Comic lastKnownComic].number.unsignedIntegerValue);
-  
-  NSArray *toolbarItems = @[systemActionItem,
-                           [UIBarButtonItem flexibleSpaceBarButtonItem],
-                           explainXkcdItem,
-                           [UIBarButtonItem flexibleSpaceBarButtonItem],
-                           [UIBarButtonItem flexibleSpaceBarButtonItem],
-                           [UIBarButtonItem flexibleSpaceBarButtonItem],
-                           previousItem,
-                           [UIBarButtonItem flexibleSpaceBarButtonItem],
-                           randomItem,
-                           [UIBarButtonItem flexibleSpaceBarButtonItem],
-                           nextItem];
-  
-  [self setToolbarItems:toolbarItems animated:NO];
-  [self.navigationController setToolbarHidden:NO animated:NO];  
-=======
 	UIBarButtonItem *systemActionItem = [UIBarButtonItem barButtonSystemItem:UIBarButtonSystemItemAction
 																	  target:self
 																	  action:@selector(systemAction:)];
@@ -196,7 +139,6 @@
 	
 	[self setToolbarItems:toolbarItems animated:NO];
 	[self.navigationController setToolbarHidden:NO animated:NO];
->>>>>>> master
 }
 
 - (void)displayComicImage {
