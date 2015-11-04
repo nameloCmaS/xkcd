@@ -37,7 +37,7 @@
     
     // Add refresh bar button item
     UIBarButtonItem *refresh = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"refresh_icon.png"]
-                                                                style:UIBarButtonItemStyleBordered
+                                                                style:UIBarButtonItemStylePlain
                                                                target:self
                                                                action:@selector(requestExplanation)];
     self.navigationItem.rightBarButtonItem = refresh;
