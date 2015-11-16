@@ -11,3 +11,7 @@ build/
 **/*.perspectivev*
 
 xkcd.xcodeproj/project.xcworkspace/xcshareddata/xkcd.xccheckout
+
+xkcd.xcdatamodel/elements
+
+xkcd.xcdatamodel/layout

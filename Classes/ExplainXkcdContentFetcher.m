@@ -41,7 +41,7 @@
         
         self.contentURL = [NSURL URLWithString:
             [NSString stringWithFormat:
-                @"http://www.explainxkcd.com/wiki/index.php?title=%d", number]];
+                @"http://www.explainxkcd.com/wiki/index.php?title=%ld", (long)number]];
     }
     return self;
 }
